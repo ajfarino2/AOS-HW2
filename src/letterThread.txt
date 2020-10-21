@@ -1,0 +1,24 @@
+class letterThread extends Thread {
+    letterThread(String chars) {
+        super(chars);
+    }
+
+    public void run() {
+        int[] freq = new int[256];
+        int counter;
+        char character;
+        for (counter = 0; counter < getName().length(); counter++) {
+            character = Character.toLowerCase(getName().charAt(counter));
+            if (Character.isLetter(character) && letterMap) {
+                freq[character]++;
+            }
+        }
+        for (counter = 0; counter < 256; counter++) {
+            if (freq[counter] != 0) {
+                System.out.println((char) counter + " : " + freq[counter]);
+            }
+        }
+
+        Thread.yield();
+    }
+}
